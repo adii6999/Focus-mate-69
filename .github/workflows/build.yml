@@ -1,4 +1,5 @@
-name: Build Focus mate APK
+
+name: Build Regain APK
 
 on:
   push:
@@ -20,16 +21,14 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew || true
+        with:
+          gradle-version: '8.2'
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug || gradle assembleDebug
+        run: gradle assembleDebug --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Regain-App
+          name: Focus-Mate-APK
           path: app/build/outputs/apk/debug/*.apk
-          
